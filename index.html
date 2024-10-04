@@ -1,0 +1,229 @@
+<!DOCTYPE html>      
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Score Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url(student.jpg);
+            background-size: cover;
+        }
+        .container {
+            background-color: #87ceeb;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+        }
+        h2 {
+            text-align: center;
+            color: #4b0082;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 20px);
+            height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 0 10px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        input:focus {
+            background-color: #e0ffff;
+            outline: none;
+            border-color: #4b0082;
+        }
+        button {
+            height: 40px;
+            background-color: #ffeb3b;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ffd700;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        th {
+            background-color: #4b0082;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                overflow: hidden;
+            }
+            input[type="text"],
+            input[type="number"] {
+                height: 35px;
+                font-size: 14px;
+            }
+            button {
+                height: 35px;
+                font-size: 14px;
+            }
+            table {
+                font-size: 14px;
+                 margin-left: -10px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            form {
+                flex-direction: column;
+            }
+            div {
+                display: block;
+                margin-bottom: 10px;
+                overflow: hidden;
+            }
+            div label {
+                display: block;
+                margin-bottom: 5px;
+            }
+            input[type="text"],
+            input[type="number"] {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 310px) {
+            h2 {
+                font-size: 18px;
+            }
+            .container {
+                padding: 10px;
+            }
+            input[type="text"],
+            input[type="number"] {
+                height: 30px;
+                font-size: 12px;
+            }
+            button {
+                height: 30px;
+                font-size: 12px;
+            }
+            table {
+                font-size: 12px;
+            }
+            th, td {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let container = document.createElement("div");
+        container.className = 'container';
+        container.innerHTML = `
+            <h2>Score Submission Form</h2>
+            <form id="scoreForm" onsubmit="show(event)">
+                <label>Name :</label> 
+                <input type="text" id="name" required>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                    <div style="flex: 1; min-width: 120px;">
+                        <label>Tamil :</label>
+                        <input type="number" id="tamil" required>
+                    </div>
+                    <div style="flex: 1; min-width: 120px;">
+                        <label>English :</label>
+                        <input type="number" id="english" required>
+                    </div>
+                    <div style="flex: 1; min-width: 120px;">
+                        <label>Maths :</label>
+                        <input type="number" id="maths" required>
+                    </div>
+                    <div style="flex: 1; min-width: 120px;">
+                        <label>Science :</label>
+                        <input type="number" id="science" required>
+                    </div>
+                    <div style="flex: 1; min-width: 120px;">
+                        <label>Social :</label>
+                        <input type="number" id="social" required>
+                    </div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <table id="scoreTable">
+                <tr>
+                    <th>S.no</th>
+                    <th>Name</th>
+                    <th>Tamil</th>
+                    <th>English</th>
+                    <th>Maths</th>
+                    <th>Science</th>
+                    <th>Social</th>
+                    <th>Total</th>
+                </tr>
+            </table>`;
+        document.body.appendChild(container);
+
+        let scoreCount = 1;
+
+        function show(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const mark1 = Number(document.getElementById("tamil").value);
+            const mark2 = Number(document.getElementById("english").value);
+            const mark3 = Number(document.getElementById("maths").value);
+            const mark4 = Number(document.getElementById("science").value);
+            const mark5 = Number(document.getElementById("social").value);
+
+            let total = mark1 + mark2 + mark3 + mark4 + mark5;
+
+            const table = document.getElementById("scoreTable");
+            const newRow = table.insertRow();
+
+            newRow.insertCell(0).innerHTML = scoreCount++;
+            newRow.insertCell(1).innerHTML = name;
+            newRow.insertCell(2).innerHTML = mark1;
+            newRow.insertCell(3).innerHTML = mark2;
+            newRow.insertCell(4).innerHTML = mark3;
+            newRow.insertCell(5).innerHTML = mark4;
+            newRow.insertCell(6).innerHTML = mark5;
+            newRow.insertCell(7).innerHTML = total;
+        }
+    </script>
+</body>
+</html>
