@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>      
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
             background-image: url(student.jpg);
             background-size: cover;
         }
-        .container {
+         .container {
             background-color: #87ceeb;
             border-radius: 15px;
             padding: 20px;
@@ -41,7 +42,7 @@
         }
         input[type="text"],
         input[type="number"] {
-            width: calc(100% - 20px);
+            width: calc(100% - 20px); /* Adjusting width to fit the padding */
             height: 40px;
             border: 1px solid #ccc;
             border-radius: 12px;
@@ -89,23 +90,25 @@
                 padding: 15px;
                 overflow: hidden;
             }
-            input[type="text"],
-            input[type="number"] {
-                height: 35px;
-                font-size: 14px;
-            }
             button {
                 height: 35px;
                 font-size: 14px;
             }
             table {
                 font-size: 14px;
-                 margin-left: -10px;
             }
             th, td {
                 padding: 8px;
             }
         }
+        @media(max-width: 545px)
+        {
+            th
+            {
+                font-size: 8px;
+                width: 10px;
+            }
+        } 
 
         @media (max-width: 480px) {
             form {
@@ -120,10 +123,6 @@
                 display: block;
                 margin-bottom: 5px;
             }
-            input[type="text"],
-            input[type="number"] {
-                width: 100%;
-            }
         }
 
         @media (max-width: 310px) {
@@ -132,11 +131,6 @@
             }
             .container {
                 padding: 10px;
-            }
-            input[type="text"],
-            input[type="number"] {
-                height: 30px;
-                font-size: 12px;
             }
             button {
                 height: 30px;
@@ -223,7 +217,10 @@
             newRow.insertCell(5).innerHTML = mark4;
             newRow.insertCell(6).innerHTML = mark5;
             newRow.insertCell(7).innerHTML = total;
+
+            document.getElementById("scoreForm").reset();
         }
     </script>
 </body>
 </html>
+
