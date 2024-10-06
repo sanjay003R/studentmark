@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>      
 <html lang="en">
 <head>
@@ -18,7 +17,7 @@
             background-image: url(student.jpg);
             background-size: cover;
         }
-         .container {
+        .container {
             background-color: #87ceeb;
             border-radius: 15px;
             padding: 20px;
@@ -101,15 +100,12 @@
                 padding: 8px;
             }
         }
-        @media(max-width: 545px)
-        {
-            th
-            {
+        @media(max-width: 545px) {
+            th {
                 font-size: 8px;
                 width: 5px;
             }
-            td
-            {
+            td {
                 font-size: 7px;
                 width: 10px;
             }
@@ -154,7 +150,7 @@
     <script>
         let container = document.createElement("div");
         container.className = 'container';
-        container.innerHTML = `
+        container.innerHTML = ` 
             <h2>Mark Submission Form</h2>
             <form id="scoreForm" onsubmit="show(event)">
                 <label>Name :</label> 
@@ -166,19 +162,19 @@
                     </div>
                     <div style="flex: 1; min-width: 120px;">
                         <label>English :</label>
-                        <input type="number" id="english"  placeholder="Enter Your Mark" required>
+                        <input type="number" id="english" placeholder="Enter Your Mark" required>
                     </div>
                     <div style="flex: 1; min-width: 120px;">
                         <label>Maths :</label>
-                        <input type="number" id="maths"  placeholder="Enter Your Mark" required>
+                        <input type="number" id="maths" placeholder="Enter Your Mark" required>
                     </div>
                     <div style="flex: 1; min-width: 120px;">
                         <label>Science :</label>
-                        <input type="number" id="science"  placeholder="Enter Your Mark" required>
+                        <input type="number" id="science" placeholder="Enter Your Mark" required>
                     </div>
                     <div style="flex: 1; min-width: 120px;">
                         <label>Social :</label>
-                        <input type="number" id="social"  placeholder="Enter Your Mark" required>
+                        <input type="number" id="social" placeholder="Enter Your Mark" required>
                     </div>
                 </div>
                 <button type="submit">Submit</button>
@@ -208,6 +204,11 @@
             const mark3 = Number(document.getElementById("maths").value);
             const mark4 = Number(document.getElementById("science").value);
             const mark5 = Number(document.getElementById("social").value);
+
+            if (mark1 >= 101 || mark2 >= 101 || mark3 >= 101 || mark4 >= 101 || mark5 >= 101) {
+                alert("Marks must be less than 100. Please enter valid marks.");
+                return;
+            }
 
             let total = mark1 + mark2 + mark3 + mark4 + mark5;
 
